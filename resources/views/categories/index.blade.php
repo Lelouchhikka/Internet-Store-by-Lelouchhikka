@@ -3,10 +3,9 @@
     <div class="row" style="margin-top: 5rem;">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD Example from scratch - laravelcode.com</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('categories.create') }}"> Create New Post</a>
+                <a class="btn btn-success" href="{{ route('categories.create') }}"> Create New Category</a>
             </div>
         </div>
     </div>

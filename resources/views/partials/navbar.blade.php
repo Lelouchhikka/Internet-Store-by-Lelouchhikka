@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -8,25 +9,30 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+                @if(session()->get('locale')=='ru')
+                    {{(App::setLocale('ru'))}}
+                @endif
+                <li> <a href="{{ route('Ru') }}" class="nav-link" > {{__("Ru")}}</a> </li>
+                <li> <a href="{{ route('En') }}" class="nav-link" > {{__("En")}}</a> </li>
                 @guest
                     <li >
                     <a href="{{ route('login') }}" class="nav-link">
-                        Войти </a>
+                        {{__("Login")}} </a>
                     </li>
                     <li> <a href="{{ route('register') }}" class="nav-link" >
-                        Регистрация </a>
+                            {{__("Register")}}</a>
                     </li>
                 @else
 
                     @if(Auth::user()->usertype==='admin')
                         <li> <a href="{{ route('brands.index') }}" class="nav-link" >
-                                Админ панель для брендов </a>
+                                {{__("Admin panel for brands")}} </a>
                         </li>
                         <li> <a href="{{ route('products.index') }}" class="nav-link" >
-                                Админ панель для продуктов </a>
+                                {{__("Admin panel for products")}}</a>
                         </li>
                         <li> <a href="{{ route('categories.index') }}" class="nav-link" >
-                                Админ панель для категорий </a>
+                                {{__("Admin panel for categories")}} </a>
                         </li>
                     @endif
 

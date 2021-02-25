@@ -19,7 +19,8 @@ use mysql_xdevapi\Session;
 */
 
 require __DIR__.'/auth.php';
-
+Route::get('/local/ru',[CartController::class,'changeToRu'])->name('Ru');
+Route::get('/local/en',[CartController::class,'changeToEn'])->name('En');
 Route::resource('brands',BrandController::class,)->middleware('admin');
 Route::resource('products',ProductController::class,)->middleware('admin');
 Route::resource('categories', CategoryController::class)->middleware('admin');

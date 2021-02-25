@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class CartController extends Controller
 {
+    public function changeToRu(){
+        session()->put('locale', 'ru');
+        return back();
+    }
+    public function changeToEn(){
+        session()->put('locale', 'en');
+        return back();
+    }
     public function shop()
     {
         $products = Product::all();
@@ -47,6 +56,6 @@ class CartController extends Controller
     }
     public function clear(){
         \Cart::clear();
-        return redirect()->route('shop')->with('success_msg', 'Car is cleared!');
+        return redirect()->route('home')->with('success_msg', 'Car is cleared!');
     }
 }

@@ -1,3 +1,6 @@
+@if(session()->get('locale')=='ru')
+    {{(App::setLocale('ru'))}}
+@endif
 @if(count(\Cart::getContent()) > 0)
     @foreach(\Cart::getContent() as $item)
         <li class="list-group-item">
@@ -22,7 +25,7 @@
     <li class="list-group-item">
         <div class="row">
             <div class="col-lg-10">
-                <b>Total: </b>${{ \Cart::getTotal() }}
+                <b>{{__("Total")}}: </b>${{ \Cart::getTotal() }}
             </div>
             <div class="col-lg-2">
                 <form action="{{ route('cart.clear') }}" method="POST">
@@ -35,9 +38,9 @@
     <br>
     <div class="row" style="margin: 0px;">
         <a class="btn btn-dark btn-sm btn-block" href="{{ route('cart.index') }}">
-            CART <i class="fa fa-arrow-right"></i>
+            {{__("CART")}} <i class="fa fa-arrow-right"></i>
         </a>
     </div>
 @else
-    <li class="list-group-item">Your Cart is Empty</li>
+    <li class="list-group-item">{{__("Your Cart is Empty")}}</li>
 @endif

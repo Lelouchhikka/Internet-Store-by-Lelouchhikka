@@ -4,45 +4,23 @@
     <div class="container" style="margin-top: 80px">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active" ><a href="{{route('home')}}">Магазин</a></li>
-                <li class="breadcrumb-item active"><a href="{{route("category.list")}}">Категорий</a></li>
-                <li class="breadcrumb-item active"> <a href="{{route("brand.list")}}">Бренды</a></li>
+                @if(session()->get('locale')=='ru')
+                    {{(App::setLocale('ru'))}}
+                @endif
+                    <li class="breadcrumb-item active" ><a href="{{route('home')}}">{{__('Home ')}}</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route("category.list")}}">{{__('Categories')}}</a></li>
+                    <li class="breadcrumb-item active"> <a href="{{route("brand.list")}}">{{__('Brands')}}</a></li>
             </ol>
         </nav>
-        @if(session()->has('success_msg'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session()->get('success_msg') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-        @endif
-        @if(session()->has('alert_msg'))
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{ session()->get('alert_msg') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-        @endif
-        @if(count($errors) > 0)
-            @foreach($errors0>all() as $error)
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ $error }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-            @endforeach
-        @endif
+
         <div class="row justify-content-center">
             <div class="col-lg-7">
                 <br>
                 @if(\Cart::getTotalQuantity()>0)
-                    <h4>{{ \Cart::getTotalQuantity()}} Product(s) In Your Cart</h4><br>
+                    <h4>{{ \Cart::getTotalQuantity()}} {{__("Product(s) In Your Cart")}}</h4><br>
                 @else
                     <h4>No Product(s) In Your Cart</h4><br>
-                    <a href="/" class="btn btn-dark">Continue Shopping</a>
+                    <a href="/" class="btn btn-dark">{{__("Continue Shopping")}}</a>
                 @endif
 
                 @foreach($cartCollection as $item)
@@ -82,7 +60,7 @@
                 @if(count($cartCollection)>0)
                     <form action="{{ route('cart.clear') }}" method="POST">
                         {{ csrf_field() }}
-                        <button class="btn btn-secondary btn-md">Очистить корзину</button>
+                        <button class="btn btn-secondary btn-md">{{__("Clear cart")}}</button>
                     </form>
                 @endif
             </div>
@@ -93,11 +71,11 @@
                             <li class="list-group-item"><b>Total: </b>${{ \Cart::getTotal() }}</li>
                         </ul>
                     </div>
-                    <br><a href="/" class="btn btn-dark">Продолжить покупки</a>
+                    <br><a href="/" class="btn btn-dark">{{__("Continue Shopping")}}</a>
                     @if(Auth::user()==null)
-                        <a href="/register" class="btn btn-success">Залогинься потом плати</a>
+                        <a href="/register" class="btn btn-success">{{__("Login then pay")}}</a>
                     @else
-                        <a href="{{route('home')}}" class="btn btn-danger"> Оплата недоступна</a>
+                        <a href="{{route('home')}}" class="btn btn-danger"> {{__("Payment not available")}}</a>
                     @endif
                 </div>
             @endif

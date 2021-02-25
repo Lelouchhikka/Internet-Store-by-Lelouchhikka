@@ -4,16 +4,19 @@
     <div class="container" style="margin-top: 80px">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">Магазин</li>
-                <li class="breadcrumb-item active"> <a href="{{route("category.list")}}">Категорий</a></li>
-                <li class="breadcrumb-item active"> <a href="{{route("brand.list")}}">Бренды</a></li>
+                @if(session()->get('locale')=='ru')
+                    {{(App::setLocale('ru'))}}
+                @endif
+                    <li class="breadcrumb-item active" aria-current="page">{{__('Home ')}}</li>
+                    <li class="breadcrumb-item active"> <a href="{{route("category.list")}}">{{__('Categories')}}</a></li>
+                    <li class="breadcrumb-item active"> <a href="{{route("brand.list")}}">{{__('Brands')}}</a></li>
             </ol>
         </nav>
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-7">
-                        <h4>Products In Our Store</h4>
+                        <h4>{{__("Products In Our Store")}}</h4>
                     </div>
                 </div>
                 <hr>
@@ -40,7 +43,7 @@
                                         <div class="card-footer" style="background-color: white;">
                                             <div class="row">
                                                 <button class="btn btn-secondary btn-sm" class="tooltip-test" title="add to cart">
-                                                    <i class="fa fa-shopping-cart"></i> add to cart
+                                                    <i class="fa fa-shopping-cart"></i> {{__("add to cart")}}
                                                 </button>
                                             </div>
                                         </div>

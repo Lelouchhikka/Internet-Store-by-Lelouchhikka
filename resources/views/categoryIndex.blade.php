@@ -5,16 +5,19 @@
     <div class="container" style="margin-top: 80px">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active" ><a href="{{route('home')}}">Магазин</a></li>
-                <li class="breadcrumb-item active"><a href="{{route("category.list")}}">Категорий</a></li>
+                @if(session()->get('locale')=='ru')
+                    {{(App::setLocale('ru'))}}
+                @endif
+                <li class="breadcrumb-item active" ><a href="{{route('home')}}">{{__('Home ')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{route("category.list")}}">{{__('Categories')}}</a></li>
                 <li class="breadcrumb-item active"aria-current="page">{{$name}}</li>
-                <li class="breadcrumb-item active"> <a href="{{route("brand.list")}}">Бренды</a></li>
+                <li class="breadcrumb-item active"> <a href="{{route("brand.list")}}">{{__('Brands')}}</a></li>
             </ol>
         </nav>
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-7">
-                    <h4>Категория по {{$name}}</h4>
+                    <h4>{{__(("Category for"))}} {{$name}}</h4>
                 </div>
             </div>
             <hr>
