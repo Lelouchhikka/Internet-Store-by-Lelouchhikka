@@ -20,12 +20,12 @@ class CartController extends Controller
     public function shop()
     {
         $products = Product::all();
-        return view('shop')->withTitle('E-COMMERCE STORE | SHOP')->with(['products' => $products]);
+        return view('shop')->with(['products' => $products]);
 
     }
     public function cart()  {
         $cartCollection = \Cart::getContent();
-        return view('cart')->withTitle('E-COMMERCE STORE | CART')->with(['cartCollection' => $cartCollection]);
+        return view('cart')->with(['cartCollection' => $cartCollection]);
     }
     public function add(Request $request){
         \Cart::add(array(
@@ -38,11 +38,11 @@ class CartController extends Controller
                 'slug' => $request->slug
             )
         ));
-        return redirect()->route('cart.index')->with('success_msg', 'Item is Added to Cart!');
+        return redirect()->route('cart.index');
     }
     public function remove(Request $request){
         \Cart::remove($request->id);
-        return redirect()->route('cart.index')->with('success_msg', 'Item is removed!');
+        return redirect()->route('cart.index');
     }
     public function update(Request $request){
         \Cart::update($request->id,
@@ -52,10 +52,10 @@ class CartController extends Controller
                     'value' => $request->quantity
                 ),
             ));
-        return redirect()->route('cart.index')->with('success_msg', 'Cart is Updated!');
+        return redirect()->route('cart.index');
     }
     public function clear(){
         \Cart::clear();
-        return redirect()->route('home')->with('success_msg', 'Car is cleared!');
+        return redirect()->route('home');
     }
 }
